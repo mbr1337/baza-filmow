@@ -1,0 +1,75 @@
+header {
+  margin: 0;
+  color: #efefef;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  // left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #14140e;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.headerContainer {
+  display: flex;
+  flex-flow: row;
+  font-size: 1.5em;
+  width: 100%;
+  padding: 2vh;
+}
+
+.headerContainer > .logo, .headerTitle, .login {
+  float: left;
+  width: 33%;
+  margin: 5px;
+  padding: 5px;
+}
+
+a {
+  color: whitesmoke;
+  &:visited {
+    color: whitesmoke;
+  }
+  &:hover {
+    color: #8db9ed;
+  }
+}
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.headerTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header {
+  animation: zoomInDown 2.2s ease-in;
+}
+
+@keyframes zoomInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}

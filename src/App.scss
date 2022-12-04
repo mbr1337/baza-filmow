@@ -1,0 +1,32 @@
+* {
+  font-family: Aileron-thin;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Aileron-thin";
+  src: local("AileronThin"), url(./fonts/Aileron-Thin.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Aileron-regular";
+  src: local("AileronRegular"),
+    url(./fonts/Aileron-Regular.otf) format("truetype");
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  /* This justify-content is essentially unnecessary in Firefox and Chrome due to the flex: 1 1 auto on the main.  However, it's needed to push the footer down on IE11 */
+  justify-content: space-between;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
