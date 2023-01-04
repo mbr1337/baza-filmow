@@ -10,24 +10,26 @@ header {
   width: 100%;
   background-color: #14140e;
   display: flex;
-  flex-flow: column nowrap;
+  // flex-flow: column nowrap;
 }
 
 .headerContainer {
-  display: flex;
-  flex-flow: row;
-  font-size: 1.5em;
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  font-size: 1.5em;
   padding: 2vh;
-}
-
-.headerContainer > .logo, .headerTitle, .login {
-  float: left;
-  width: 33%;
   margin: 5px;
   padding: 5px;
 }
 
+.login {
+  // padding: 5px;
+  text-align: center;
+}
 a {
   color: whitesmoke;
   &:visited {
@@ -37,24 +39,38 @@ a {
     color: #8db9ed;
   }
 }
-.logo {
-  display: flex;
-  justify-content: center;
-}
-
-.headerTitle {
-  display: flex;
-  justify-content: center;
-}
-
-.login {
-  display: flex;
-  justify-content: flex-end;
-}
 
 .header {
-  animation: zoomInDown 2.2s ease-in;
+  animation: fadeInDown 0.75s ease-in;
 }
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 
 @keyframes zoomInDown {
   from {
@@ -73,3 +89,132 @@ a {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
+
+$thick: 2px;
+$pad: 0.3em;
+$extra: calc(#{$pad} * 1.2);
+$color: #c2ddff;
+
+.underline {
+  .a {
+    color: white;
+    padding: $pad;
+    display: inline-block;
+    border: $thick solid transparent;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.5em 1.2em;
+
+    .text {
+      padding: 0;
+      // font-family: proxima-nova, monospace;
+      transform: translate3d(0, $pad, 0);
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      bottom: -$thick;
+      left: $extra;
+      right: $extra;
+      height: $thick;
+      background: $color;
+      // z-index: -1;
+      transition: transform 0.8s cubic-bezier(1, 0, 0.37, 1) 0.2s,
+        right 0.2s cubic-bezier(0.04, 0.48, 0, 1) 0.6s,
+        left 0.4s cubic-bezier(0.04, 0.48, 0, 1) 0.6s;
+      transform-origin: left;
+    }
+  }
+
+  .line {
+    position: absolute;
+    background: $color;
+
+    &.-right,
+    &.-left {
+      width: $thick;
+      bottom: -$thick;
+      top: -$thick;
+      transform: scale3d(1, 0, 1);
+    }
+
+    &.-top,
+    &.-bottom {
+      height: $thick;
+      left: -$thick;
+      right: -$thick;
+      transform: scale3d(0, 1, 1);
+    }
+
+    &.-right {
+      right: -$thick;
+      transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.23s;
+      transform-origin: top;
+    }
+
+    &.-top {
+      top: -$thick;
+      transition: transform 0.08s linear 0.43s;
+      transform-origin: left;
+    }
+
+    &.-left {
+      left: -$thick;
+      transition: transform 0.08s linear 0.51s;
+      transform-origin: bottom;
+    }
+
+    &.-bottom {
+      bottom: -$thick;
+      transition: transform 0.3s cubic-bezier(1, 0, 0.65, 1.01);
+      transform-origin: right;
+    }
+  }
+
+  .a:hover,
+  .a:active {
+    .text {
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1) 0.4s;
+    }
+
+    &:after {
+      transform: scale3d(0, 1, 1);
+      right: -$thick;
+      left: -$thick;
+      transform-origin: right;
+      transition: transform 0.2s cubic-bezier(1, 0, 0.65, 1.01) 0.17s,
+        right 0.2s cubic-bezier(1, 0, 0.65, 1.01), left 0s 0.3s;
+    }
+
+    .line {
+      transform: scale3d(1, 1, 1);
+
+      &.-right {
+        transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.2s;
+        transform-origin: bottom;
+      }
+
+      &.-top {
+        transition: transform 0.08s linear 0.4s;
+        transform-origin: right;
+      }
+
+      &.-left {
+        transition: transform 0.08s linear 0.48s;
+        transform-origin: top;
+      }
+
+      &.-bottom {
+        transition: transform 0.5s cubic-bezier(0, 0.53, 0.29, 1) 0.56s;
+        transform-origin: left;
+      }
+    }
+  }
+}
+
+

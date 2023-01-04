@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../styles/footerStyle.scss';
+import { Link } from "react-router-dom";
 export default class Footer extends Component {
     render() {
         return (
@@ -19,14 +20,11 @@ export default class Footer extends Component {
                     </ul>
                     <ul className="footer-list-top">
                         <li>
-                            <h4 className="footer-list-header">Newsletter</h4></li>
-                        <li><a href='/shop/about-mission' className="generic-anchor footer-list-anchor" itemProp="significantLink">GET TO KNOW US</a></li>
-                        <li><a href='/promos.html' className="generic-anchor footer-list-anchor" itemProp="significantLink">PROMOS</a></li>
-                        <li><a href='/retailers/new-retailers.html' className="generic-anchor footer-list-anchor" itemProp="significantLink">RETAIL</a></li>
+                            <h4 className="footer-list-header">Filmy</h4></li>
+                        <li>
+                                <Link to="/add" className="generic-anchor footer-list-anchor">Dodaj Film</Link>
+                        </li>
 
-                        <li><a href='/job-openings.html' itemProp="significantLink" className="generic-anchor footer-list-anchor">DEALS</a></li>
-
-                        <li><a href='/shop/about-show-schedule' className="generic-anchor footer-list-anchor" itemProp="significantLink">EVENTS</a></li>
                     </ul>
                     <ul className="footer-list-top">
                         <li>
@@ -44,11 +42,11 @@ export default class Footer extends Component {
                             CONNECT <span className="footer-social-small">with</span> US
                         </span>
                         <span className="footer-social-overlap footer-social-icons-wrapper">
-                            <a href="" className="generic-anchor" target="_blank" title="Facebook" itemProp="significantLink"><i className="fa fa-facebook"></i></a>
-                            <a href="" className="generic-anchor" target="_blank" title="Twitter" itemProp="significantLink"><i className="fa fa-twitter"></i></a>
-                            <a href="" className="generic-anchor" target="_blank" title="Instagram" itemProp="significantLink"><i className="fa fa-instagram"></i></a>
-                            <a href="" className="generic-anchor" target="_blank" title="Youtube" itemProp="significantLink"><i className="fa fa-youtube"></i></a>
-                            <a href="" className="generic-anchor" target="_blank" title="Spotify" itemProp="significantLink"><i className="fa fa-spotify"></i></a>
+                            <a href="/terms-of-use.html" className="generic-anchor" target="_blank" title="Facebook" itemProp="significantLink"><i className="fa fa-facebook"></i></a>
+                            <a href="/terms-of-use.html" className="generic-anchor" target="_blank" title="Twitter" itemProp="significantLink"><i className="fa fa-twitter"></i></a>
+                            <a href="/terms-of-use.html" className="generic-anchor" target="_blank" title="Instagram" itemProp="significantLink"><i className="fa fa-instagram"></i></a>
+                            <a href="/terms-of-use.html" className="generic-anchor" target="_blank" title="Youtube" itemProp="significantLink"><i className="fa fa-youtube"></i></a>
+                            <a href="/terms-of-use.html" className="generic-anchor" target="_blank" title="Spotify" itemProp="significantLink"><i className="fa fa-spotify"></i></a>
                         </span>
                     </section>
                     <section className="footer-bottom-section flex-rw">
@@ -62,7 +60,7 @@ export default class Footer extends Component {
                         </div>
                     </section>
                 </footer>
-            </div>
+            </div >
         );
     }
 } 

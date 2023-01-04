@@ -1,0 +1,74 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+figure.fig {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  max-width: 99%;
+  color: #000000;
+  text-align: center;
+  font-size: 16px;
+  background-color: #2c3447;
+  // background-color: #212140;
+  padding: 15px;
+  background-image: linear-gradient(
+    -25deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 1;
+}
+figure.fig figcaption {
+  width: 100%;
+}
+figure.fig h2,
+figure.fig h4,
+figure.fig blockquote {
+  margin: 0;
+}
+figure.fig h2,
+figure.fig h4 {
+  font-weight: 300;
+}
+figure.fig h2 {
+  color: #ffffff;
+}
+figure.fig h4 {
+  color: #a6a6a6;
+}
+figure.fig h6 {
+  font-size: 1em;
+  padding: 45px 20px 40px 50px;
+  margin: 30px 30px;
+  background-color: #dfdfdf;
+  border-radius: 5px;
+  box-shadow: inset -1.4px -1.4px 2px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  position: relative;
+}
+figure.fig .profile {
+  width: 10%;
+  border-radius: 15%;
+  display: inline-block;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  border: solid 4px black;
+}
+
+#blurred {
+  position: absolute;
+  z-index: 0;
+  filter: blur(100px);
+}
+
+#cover {
+  z-index: 1;
+  position: relative;
+}
+/* Clear floats after the columns */
+.rowT:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,136 +1,83 @@
 import '../styles/filmStyle.scss'
-import $ from 'jquery'
 import React, { Component } from "react";
 import HTTYD from '../images/HTTYD.jpg';
 import WL from '../images/Wonderful_life.jpeg';
 import HB from '../images/Hacksaw_Ridge.png';
 import ROTS from '../images/ROTS.jpg'
-export default class Films extends Component {
+import Filmcard from './filmCard';
 
-    componentDidMount() {
-        let old = $('.card').get(0);
-        $('.card').on("click", function () {
-            if (old != null && $(old).hasClass('open'))
-                $(old).toggleClass('open');
-            // console.log($(this));
-            $(this).toggleClass('open');
-            old = this;
-        });
-    }
+
+const filmArr = [
+    {
+        Id: 1,
+        ImgSrc: HTTYD,
+        Alt: "Jak wytresowac smoka",
+        Title: "How To Train Your Dragon",
+        Author: "Chris Sanders, Dean DeBlois",
+        Summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod ratione impedit temporibus maiores autem aperiam assumenda exercitationem, quisquam nobis esse.",
+        CurrentRating: 10,
+        MaxRating: 10,
+        IsCardOpen: true
+    },
+    {
+        Id: 2,
+        ImgSrc: WL,
+        Alt: "To wspaniale zycie",
+        Title: "It's A Wonderful Life",
+        Author: "Frank Capra",
+        Summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod ratione impedit temporibus maiores autem aperiam assumenda exercitationem, quisquam nobis esse.",
+        CurrentRating: 7,
+        MaxRating: 10,
+        IsCardOpen: false
+    },
+    {
+        Id: 3,
+        ImgSrc: HB,
+        Alt: "Przelecz ocalonych",
+        Title: "Hacksaw Ridge",
+        Author: "Mel Gibson",
+        Summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod ratione impedit temporibus maiores autem aperiam assumenda exercitationem, quisquam nobis esse.",
+        CurrentRating: 9,
+        MaxRating: 10,
+        IsCardOpen: false
+    },
+    {
+        Id: 4,
+        ImgSrc: ROTS,
+        Alt: "Gwiezdne wojny Zemsta Sithow",
+        Title: "Star Wars - Revenge of the Sith",
+        Author: "George Lucas",
+        Summary: "Did you ever hear the tragedy of Darth Plagueis the Wise? I thought not.It's not a story the Jedi would tell you. It's a Sith legend. Darth Plagueis... was a Dark Lord         of the Sith so powerful and so wise, he could use the Force to influence the midi- chlorians...to create...life. He had such a knowledge of the dark side, he could even keep the ones he cared about...from dying.",
+        CurrentRating: 10,
+        MaxRating: 10,
+        IsCardOpen: false
+    },
+];
+
+export default class Films extends Component {
+    filmRef = React.createRef();
 
     render() {
         return (
-            <main>
-                <div className="container">
-                    <div className="center list flex-column">
-                        <div className="card flex-row open">
-                            <img
-                                src={HTTYD}
-                                className="book"
-                                alt='Jak wytresowac smoka'
-                            />
-                            <div className="flex-column info">
-                                <div className="title">How To Train Your Dragon</div>
-                                <div className="author">Chris Sanders, Dean DeBlois</div>
-                                <div className="hidden bottom summary">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod
-                                    ratione impedit temporibus maiores autem aperiam assumenda
-                                    exercitationem, quisquam nobis esse.
-                                </div>
-                            </div>
-                            <div className="flex-column group">
-                                <div className="members">
-                                    <span className="current">10</span> /
-                                    <span className="max">10</span>
-                                </div>
-                                <div className="hidden bottom">
-                                    <button className="simple">Button</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card flex-row">
-                            <img
-                                src={WL}
-                                className="book"
-                                alt='To wspaniale zycie'
-                            />
-                            <div className="flex-column info">
-                                <div className="title">It's A Wonderful Life</div>
-                                <div className="author">Frank Capra</div>
-                                <div className="hidden bottom summary">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod
-                                    ratione impedit temporibus maiores autem aperiam assumenda
-                                    exercitationem, quisquam nobis esse.
-                                </div>
-                            </div>
-                            <div className="flex-column group">
-                                <div className="members">
-                                    <span className="current">7</span> /
-                                    <span className="max">10</span>
-                                </div>
-                                <div className="hidden bottom">
-                                    <button className="simple">Button</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card flex-row">
-                            <img
-                                src={HB}
-                                className="book"
-                                alt='Przelecz ocalonych'
-                            />
-                            <div className="flex-column info">
-                                <div className="title">Hacksaw Ridge</div>
-                                <div className="author">Mel Gibson</div>
-                                <div className="hidden bottom summary">
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod
-                                    ratione impedit temporibus maiores autem aperiam assumenda
-                                    exercitationem, quisquam nobis esse.
-                                </div>
-                            </div>
-                            <div className="flex-column group">
-                                <div className="members">
-                                    <span className="current">9</span> /
-                                    <span className="max">10</span>
-                                </div>
-                                <div className="hidden bottom">
-                                    <button className="simple">Button</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card flex-row">
-                            <img
-                                src={ROTS}
-                                className="book"
-                                alt='Gwiezdne wojny Zemsta Sithow'
-                            />
-                            <div className="flex-column info">
-                                <div className="title">Star Wars - Revenge of the Sith</div>
-                                <div className="author">George Lucas</div>
-                                <div className="hidden bottom summary">
-                                    Did you ever hear the tragedy of Darth Plagueis the Wise?
-                                    I thought not. It's not a story the Jedi would tell you.
-                                    It's a Sith legend. Darth Plagueis... was a Dark Lord
-                                    of the Sith so powerful and so wise, he could use the
-                                    Force to influence the midi-chlorians... to create... life.
-                                    He had such a knowledge of the dark side,
-                                    he could even keep the ones he cared about... from dying.
-                                </div>
-                            </div>
-                            <div className="flex-column group">
-                                <div className="members">
-                                    <span className="current">10</span> /
-                                    <span className="max">10</span>
-                                </div>
-                                <div className="hidden bottom">
-                                    <button className="simple">Button</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </main>
+            <div className="container">
+                {
+                    filmArr.map(film => (
+                        <Filmcard
+                            ref={this.filmRef}
+                            IsCardOpen={film.IsCardOpen}
+                            key={film.Id}
+                            ImgSrc={film.ImgSrc}
+                            Alt={film.Title}
+                            Title={film.Title}
+                            Author={film.Author}
+                            Summary={film.Summary}
+                            CurrentRating={film.CurrentRating}
+                            MaxRating={film.MaxRating}
+                        />
+                    ))
+                }
+
+            </div>
         );
     }
 }
