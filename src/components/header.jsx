@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/headerStyle.scss'
+import '../styles/headerStyle.scss';
 
 const Header = () => {
-    const isNotLogged = localStorage.getItem("userLoginData");
+    const isNotLogged = localStorage.getItem('Encrypted userLoginData');
 
     function logout() {
         localStorage.clear();

@@ -12,17 +12,18 @@
     "axios": "^1.2.3",
     "compass": "^0.1.1",
     "compass-mixins": "^0.12.12",
+    "crypto-js": "^4.1.1",
     "history": "^5.3.0",
     "jquery": "^3.6.3",
+    "json5": ">=2.2.2",
+    "nth-check": ">=2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-jwt": "^1.1.8",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "sass": "^1.57.1",
-    "web-vitals": "^2.1.4",
-    "json5": ">=2.2.2",
-    "nth-check": ">=2.0.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

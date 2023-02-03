@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 import axios from 'axios';
-import Details from './details';
 export default class Filmcard extends Component {
 
     constructor(props) {
@@ -17,7 +16,11 @@ export default class Filmcard extends Component {
     }
 
     removeFilm(id) {
-        axios.delete(`https://at.usermd.net/api/movie/${id}`);
+        axios.delete(`https://at.usermd.net/api/movie/${id}`)
+            .then(() => {
+                window.location.reload();
+            })
+
     }
 
     render() {

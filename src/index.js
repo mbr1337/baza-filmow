@@ -14,8 +14,10 @@ import Details from './components/details';
 import AddFilms from './components/addFilm';
 import { Navigate } from "react-router-dom";
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const isNotLogged = localStorage.getItem("userLoginData");
+const isNotLogged = localStorage.getItem("Encrypted userLoginData");
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,7 +30,6 @@ const router = createBrowserRouter([
   {
     path: "add",
     element: isNotLogged ? <AddFilms /> : <Navigate replace to="/" />,
-    // element: <AddFilms />,
   },
   {
     path: "signIn",
@@ -48,14 +49,5 @@ const router = createBrowserRouter([
 root.render(
 
   <RouterProvider router={router} />
-  // <React.StrictMode>
-  //   <Routes>
-  //     <Route path='' ></Route>
-  //   </Routes>
-  // </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

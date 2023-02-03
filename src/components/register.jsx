@@ -13,6 +13,7 @@ const Register = () => {
     const navigate = useNavigate();
     const inputRef = useRef();
 
+
     const handleChange = (event) => {
         setPass(event.target.value);
     };
@@ -74,8 +75,7 @@ const Register = () => {
             'email': email,
             'password': pass
         })
-            .then((response) => {
-                console.log(response.data);
+            .then(() => {
                 navigate("/signIn");
                 window.location.reload();
             })

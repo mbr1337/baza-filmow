@@ -3,8 +3,11 @@ import Footer from "./footer";
 import Header from "./header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { encryptData } from '../utils/util.js';
 
 const Login = () => {
+
+
     const [login, setLogin] = useState("");
     const [pass, setPass] = useState("");
     const navigate = useNavigate();
@@ -36,8 +39,14 @@ const Login = () => {
                 password: pass,
             })
             .then((response) => {
-                console.log(response.data);
-                localStorage.setItem("userLoginData", JSON.stringify({ login, pass }));
+                // console.log(response.data);
+                const originalData = {
+                    login: login,
+                    password: pass
+                }
+                const salt = process.env.SALT || '6d090796-ecdf-11ea-adc1-0242ac112345';
+                const encryptedData = encryptData(originalData, salt);
+                localStorage.setItem('Encrypted userLoginData', encryptedData);
                 localStorage.setItem("JWT", response.data.token);
                 navigate("/");
                 window.location.reload();
