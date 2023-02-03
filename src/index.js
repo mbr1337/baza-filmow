@@ -12,39 +12,23 @@ import Register from './components/register';
 import NotFound from './components/notFound';
 import Details from './components/details';
 import AddFilms from './components/addFilm';
+import { Navigate } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+const isNotLogged = localStorage.getItem("userLoginData");
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // children: [
-    //   {
-    //     path: "details",
-    //     element: <Details />
-    //   },
-    //   {
-    //     path: "add",
-    //     element: <div>add</div>
-    //   },
-    //   {
-    //     path: "signIn",
-    //     element: <Login />
-    //   },
-    //   {
-    //     path: "signUp",
-    //     element: <Register />
-    //   },
-    // ],
   },
   {
-    path: "details",
+    path: "details/:filmID",
     element: <Details />,
   },
   {
     path: "add",
-    element: <AddFilms />,
+    element: isNotLogged ? <AddFilms /> : <Navigate replace to="/" />,
+    // element: <AddFilms />,
   },
   {
     path: "signIn",
@@ -59,6 +43,7 @@ const router = createBrowserRouter([
     element: <NotFound />
   }
 ]);
+
 
 root.render(
 

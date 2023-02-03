@@ -22,7 +22,7 @@ export default class Footer extends Component {
                         <li>
                             <h4 className="footer-list-header">Filmy</h4></li>
                         <li>
-                                <Link to="/add" className="generic-anchor footer-list-anchor">Dodaj Film</Link>
+                            <Link to="/add" className="generic-anchor footer-list-anchor">Dodaj Film</Link>
                         </li>
 
                     </ul>
@@ -53,14 +53,14 @@ export default class Footer extends Component {
                         <div className="footer-bottom-wrapper">
                             <i className="fa fa-copyright" role="copyright">
 
-                            </i> 2022 Mikołaj Bryndal <address className="footer-address" role="company address">ANS, Tarnów</address><span className="footer-bottom-rights"> - All Rights Reserved - </span>
+                            </i> 2023 Mikołaj Bryndal <address className="footer-address" role="company address">ANS, Tarnów</address><span className="footer-bottom-rights"> - All Rights Reserved - </span>
                         </div>
                         <div className="footer-bottom-wrapper">
                             <a href="/terms-of-use.html" className="generic-anchor" rel="nofollow">Terms</a> | <a href="/privacy-policy.html" className="generic-anchor" rel="nofollow">Privacy</a>
                         </div>
                     </section>
                 </footer>
-            </div >
+            </div>
         );
     }
 } 

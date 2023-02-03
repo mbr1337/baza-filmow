@@ -1,83 +1,53 @@
 import '../styles/filmStyle.scss'
-import React, { Component } from "react";
-import HTTYD from '../images/HTTYD.jpg';
-import WL from '../images/Wonderful_life.jpeg';
-import HB from '../images/Hacksaw_Ridge.png';
-import ROTS from '../images/ROTS.jpg'
+import React, { useState, useEffect } from "react";
 import Filmcard from './filmCard';
+import axios from 'axios';
 
+const Films = () => {
+    const [movies, setMovies] = useState([]);
 
-const filmArr = [
-    {
-        Id: 1,
-        ImgSrc: HTTYD,
-        Alt: "Jak wytresowac smoka",
-        Title: "How To Train Your Dragon",
-        Author: "Chris Sanders, Dean DeBlois",
-        Summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod ratione impedit temporibus maiores autem aperiam assumenda exercitationem, quisquam nobis esse.",
-        CurrentRating: 10,
-        MaxRating: 10,
-        IsCardOpen: true
-    },
-    {
-        Id: 2,
-        ImgSrc: WL,
-        Alt: "To wspaniale zycie",
-        Title: "It's A Wonderful Life",
-        Author: "Frank Capra",
-        Summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod ratione impedit temporibus maiores autem aperiam assumenda exercitationem, quisquam nobis esse.",
-        CurrentRating: 7,
-        MaxRating: 10,
-        IsCardOpen: false
-    },
-    {
-        Id: 3,
-        ImgSrc: HB,
-        Alt: "Przelecz ocalonych",
-        Title: "Hacksaw Ridge",
-        Author: "Mel Gibson",
-        Summary: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod ratione impedit temporibus maiores autem aperiam assumenda exercitationem, quisquam nobis esse.",
-        CurrentRating: 9,
-        MaxRating: 10,
-        IsCardOpen: false
-    },
-    {
-        Id: 4,
-        ImgSrc: ROTS,
-        Alt: "Gwiezdne wojny Zemsta Sithow",
-        Title: "Star Wars - Revenge of the Sith",
-        Author: "George Lucas",
-        Summary: "Did you ever hear the tragedy of Darth Plagueis the Wise? I thought not.It's not a story the Jedi would tell you. It's a Sith legend. Darth Plagueis... was a Dark Lord         of the Sith so powerful and so wise, he could use the Force to influence the midi- chlorians...to create...life. He had such a knowledge of the dark side, he could even keep the ones he cared about...from dying.",
-        CurrentRating: 10,
-        MaxRating: 10,
-        IsCardOpen: false
-    },
-];
-
-export default class Films extends Component {
-    filmRef = React.createRef();
-
-    render() {
-        return (
-            <div className="container">
-                {
-                    filmArr.map(film => (
-                        <Filmcard
-                            ref={this.filmRef}
-                            IsCardOpen={film.IsCardOpen}
-                            key={film.Id}
-                            ImgSrc={film.ImgSrc}
-                            Alt={film.Title}
-                            Title={film.Title}
-                            Author={film.Author}
-                            Summary={film.Summary}
-                            CurrentRating={film.CurrentRating}
-                            MaxRating={film.MaxRating}
-                        />
-                    ))
-                }
-
-            </div>
-        );
+    const generateRandomNumber = () => {
+        const min = 1;
+        const max = 10;
+        const newRandomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+        return newRandomNumber;
     }
+    useEffect(() => {
+        axios.get('https://at.usermd.net/api/movies')
+            .then(response => {
+                if (response.data.length) {
+                    setMovies(response.data);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
+
+    // useEffect(() => {
+    //     axios.delete('https://at.usermd.net/api/movie/63d64eb8d3af3f39a23b1c71')
+    // }, []);
+
+
+    return (
+        <div className="container">
+            <div>
+                {movies.length ? movies.map(movie => (
+                    <Filmcard
+                        key={movie.id}
+                        IsCardOpen={false}
+                        ImgSrc={movie.image}
+                        Alt="alt nie podano"
+                        Title={movie.title}
+                        Author="Autora nie podano"
+                        Summary={movie.content}
+                        CurrentRating={generateRandomNumber()}
+                        MaxRating={10}
+                        movieid={movie.id}
+                    />
+                )) : <div>No Movies Found</div>}
+            </div>
+        </div>
+    );
 }
+export default Films;

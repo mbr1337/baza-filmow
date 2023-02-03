@@ -1,65 +1,74 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import Footer from "./footer";
 import Header from "./header";
-export default class Login extends React.Component {
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-    constructor(props) {
-        super();
-        this.state = {
-            login: "",
-            pass: "",
-            hidden: null
-        };
+const Login = () => {
+    const [login, setLogin] = useState("");
+    const [pass, setPass] = useState("");
+    const navigate = useNavigate();
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleChange2 = this.handleChange2.bind(this);
-        this.checkChar = this.checkChar.bind(this);
-        this.finalCheck = this.finalCheck.bind(this);
+    const handleChange = (event) => {
+        setLogin(event.target.value);
+    };
 
+    const handleChange2 = (event) => {
+        setPass(event.target.value);
+    };
 
+    const checkChar = () => {
+        return pass.length >= 8 && pass.length <= 20;
+    };
 
-    }
-    handleChange(event) {
-        this.setState({
-            login: event.target.value,
-        });
-    }
-    handleChange2(event) {
-        this.setState({
-            pass: event.target.value
-        });
-    }
-    checkChar() {
-        return this.state.pass.length >= 8 && this.state.pass.length <= 20;
-    }
-    checkChar2() {
-        return this.state.login.length >= 6 && this.state.login.length <= 15;
-    }
-    finalCheck() {
-        return this.checkChar() && this.checkChar2();
-    }
+    const checkChar2 = () => {
+        return login.length >= 6 && login.length <= 15;
+    };
 
-    render() {
-        return (
-            <div>
-                <Header />
-                <div className="register">
-                    <input
-                        type="text"
-                        placeholder="login"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="password"
-                        placeholder="password"
-                        onChange={this.handleChange2}
-                    />
+    const finalCheck = () => {
+        return checkChar() && checkChar2();
+    };
 
-                    <button className="submitBtn" disabled={this.finalCheck() ? false : true}> Login </button>
-                </div>
-                <Footer />
+    const sendForm = () => {
+        axios
+            .post("https://at.usermd.net/api/user/auth", {
+                login: login,
+                password: pass,
+            })
+            .then((response) => {
+                console.log(response.data);
+                localStorage.setItem("userLoginData", JSON.stringify({ login, pass }));
+                localStorage.setItem("JWT", response.data.token);
+                navigate("/");
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+    return (
+        <div>
+            <Header />
+            <div className="register">
+                <input type="text" placeholder="login" onChange={handleChange} />
+                <input
+                    type="password"
+                    placeholder="password"
+                    onChange={handleChange2}
+                />
+                <button
+                    className="submitBtn"
+                    disabled={finalCheck() ? false : true}
+                    onClick={sendForm}
+                >
+                    {" "}
+                    Login{" "}
+                </button>
             </div>
-        );
-    }
-}
+            <Footer />
+        </div>
+    );
+};
 
+export default Login;

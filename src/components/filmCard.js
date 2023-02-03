@@ -1,7 +1,9 @@
 import '../styles/filmStyle.scss'
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-
+import { decodeToken } from 'react-jwt';
+import axios from 'axios';
+import Details from './details';
 export default class Filmcard extends Component {
 
     constructor(props) {
@@ -10,8 +12,13 @@ export default class Filmcard extends Component {
             IsCardOpen: props.IsCardOpen,
             testowy: null,
         };
+        this.user = decodeToken(localStorage.getItem('JWT'));
+        // console.log(this.props.movieid);
     }
 
+    removeFilm(id) {
+        axios.delete(`https://at.usermd.net/api/movie/${id}`);
+    }
 
     render() {
         return (
@@ -23,7 +30,6 @@ export default class Filmcard extends Component {
                             IsCardOpen: !this.state.IsCardOpen
                         });
                     }}
-                    id={this.props.IdTest}
                 >
                     <img
                         src={this.props.ImgSrc}
@@ -43,9 +49,10 @@ export default class Filmcard extends Component {
                             <span className="max">{this.props.MaxRating}</span>
                         </div>
                         <div className="hidden bottom">
-                            <Link to="/details">
+                            <Link to={"/details/" + this.props.movieid}>
                                 <button className="simple">Details</button>
                             </Link>
+                            {this.user && this.user.isAdmin ? <button className="simple" onClick={() => this.removeFilm(this.props.movieid)}>Remove</button> : null}
                         </div>
                     </div>
                 </div>
