@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { encryptData } from '../utils/util.js';
 
 const Login = () => {
-
-
     const [login, setLogin] = useState("");
     const [pass, setPass] = useState("");
     const navigate = useNavigate();

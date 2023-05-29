@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import '../styles/headerStyle.scss';
-
 const Header = () => {
     const isNotLogged = localStorage.getItem('Encrypted userLoginData');
 
@@ -9,7 +8,6 @@ const Header = () => {
         localStorage.clear();
         window.location.reload();
     }
-
     return (
         <header className="header">
             <div className="headerContainer">

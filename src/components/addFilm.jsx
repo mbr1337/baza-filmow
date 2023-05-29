@@ -13,7 +13,6 @@ const AddFilms = () => {
     const [rating, setRating] = useState("");
     const [image, setImage] = useState("");
     const navigate = useNavigate();
-
     const isFormValid = () => title && summary && image;
 
     const sendForm = (e) => {
@@ -25,7 +24,6 @@ const AddFilms = () => {
                 content: summary,
             })
             .then(() => {
-                // console.log(response);
                 navigate("/");
                 window.location.reload();
             })

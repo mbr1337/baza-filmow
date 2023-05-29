@@ -13,8 +13,6 @@ import NotFound from './components/notFound';
 import Details from './components/details';
 import AddFilms from './components/addFilm';
 import { Navigate } from "react-router-dom";
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const isNotLogged = localStorage.getItem("Encrypted userLoginData");
 

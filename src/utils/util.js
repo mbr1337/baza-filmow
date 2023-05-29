@@ -12,17 +12,3 @@ export const decryptData = (ciphertext, salt) => {
         return null;
     }
 }
-
-// decryption
-// let salt = '';
-//     let originalData = null;
-//     if (!isNotLogged) {
-//         // console.log("No localStorage available")
-//     } else {
-//         salt = process.env.SALT || '6d090796-ecdf-11ea-adc1-0242ac112345';
-
-//         originalData = decryptData(isNotLogged, salt);
-//     }
-//     if (!originalData) {
-//         localStorage.clear();
-//     }

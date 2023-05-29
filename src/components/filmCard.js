@@ -12,6 +12,7 @@ export default class Filmcard extends Component {
             testowy: null,
         };
         this.user = decodeToken(localStorage.getItem('JWT'));
+
         // console.log(this.props.movieid);
     }
 

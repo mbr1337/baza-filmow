@@ -4,7 +4,6 @@ import Footer from "./footer";
 import Header from "./header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 const Register = () => {
     const [pass, setPass] = useState("");
     const [email, setEmail] = useState("");
@@ -12,7 +11,6 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const navigate = useNavigate();
     const inputRef = useRef();
-
 
     const handleChange = (event) => {
         setPass(event.target.value);
@@ -123,8 +121,6 @@ const Register = () => {
                             8 minimum characters
                         </li>
                     </ul>
-
-
                 </div>
                 <span style={this.checkChar2() ? { color: "green" } : { color: "red" }} className={this.checkChar2() ? "fa fa-check test1" : "fa fa-times test1"}> login</span>
                 <span style={this.checkChar3() ? { color: "green" } : { color: "red" }} className={this.checkChar3() ? "fa fa-check test1" : "fa fa-times test1"}> username</span>
